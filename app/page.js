@@ -5,6 +5,9 @@ import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import TailwindLayout from '@/app/TailwindLayout';
 import { LoadingIcon } from '@/app/components/LoadingIcon';
 import Link from 'next/link';
+import { signOut } from 'next-auth/react';
+import SignOutButton from '@/app/components/SignOutButton';
+import { toast } from 'react-hot-toast';
 
 export default function Home() {
   const [text, setText] = useState('');
@@ -192,8 +195,10 @@ export default function Home() {
       </form>
 
       <ul className="list-none pt-5">
-        <button onClick={() => {}}>Log in</button>
-
+        <SignOutButton />
+        <div>
+          <a href={'/dashboard'}>dashboard</a>
+        </div>
         <CheckListItem state={githubResponse} name={'GitHub repo'} />
         <CheckListItem state={githubOrgResponse} name={'GitHub org/user'} />
         <CheckListItem state={gitlabResponse} name={'GitLab project'} />
