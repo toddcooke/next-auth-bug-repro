@@ -1,9 +1,12 @@
 import { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import { PrismaClient } from '@prisma/client';
+import { PrismaAdapter } from '@auth/prisma-adapter';
+
 const prisma = new PrismaClient();
 
 export const authOptions: NextAuthOptions = {
+  adapter: PrismaAdapter(prisma),
   // Configure one or more authentication providers
   providers: [
     GoogleProvider({
@@ -12,28 +15,4 @@ export const authOptions: NextAuthOptions = {
     }),
     // ...add more providers here
   ],
-  callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
-      console.log(user, account, profile, email, credentials);
-      try {
-        const upsertUser = await prisma.user.upsert({
-          where: {
-            email: user.email,
-          },
-          update: {
-            email: user.email,
-            name: user.name,
-          },
-          create: {
-            email: user.email,
-            name: user.name,
-          },
-        });
-        return true;
-      } catch (e) {
-        console.log(e);
-        return false;
-      }
-    },
-  },
 };

@@ -8,14 +8,12 @@ export default function TailwindLayout({ children }) {
         <div className="py-10">
           <header>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <Link href={'https://github.com/toddcooke/namechecker'}>
+              <Link href={'https://github.com/toddcooke'}>
                 <h1 className="text-3xl font-bold leading-tight tracking-tight text-center">
-                  Name Checker
+                  Temp
                 </h1>
               </Link>
-              <h2 className="text-center p-1">
-                Find out if your project name is taken
-              </h2>
+              <h2 className="text-center p-1">temp</h2>
             </div>
           </header>
           <main className={styles.main}>
